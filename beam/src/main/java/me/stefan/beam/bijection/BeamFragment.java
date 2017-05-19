@@ -64,13 +64,13 @@ public class BeamFragment<PresenterType extends Presenter> extends Fragment {
         helper.onResult(requestCode, resultCode, data);
     }
 
-    protected final <E extends View> E $(@NonNull View view,@IdRes int id){
-        return (E)view.findViewById(id);
-    }
-
-    protected final <E extends View> E viewId(@NonNull View view,@IdRes int id){
-        return (E)view.findViewById(id);
-    }
+//    protected final <E extends View> E $(@NonNull View view,@IdRes int id){
+//        return (E)view.findViewById(id);
+//    }
+//
+//    protected final <E extends View> E viewId(@NonNull View view,@IdRes int id){
+//        return (E)view.findViewById(id);
+//    }
 
     public PresenterType getPresenter() {
         return helper.getPresenter();

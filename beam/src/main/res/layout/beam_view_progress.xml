@@ -9,6 +9,6 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="center"
-        android:indeterminate="false"/>
+        android:indeterminate="false" />
 
 </FrameLayout>

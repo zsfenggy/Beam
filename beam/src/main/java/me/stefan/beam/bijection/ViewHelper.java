@@ -23,7 +23,6 @@ class ViewHelper<PresenterType extends Presenter> {
         this.view = view;
     }
 
-
     void onCreate(Bundle savedInstanceState){
         String id ;
         if (savedInstanceState == null||(id = savedInstanceState.getString(PRESENTER_ID))== null){
@@ -43,7 +42,7 @@ class ViewHelper<PresenterType extends Presenter> {
             presenter.create(view,savedInstanceState);
     }
 
-    boolean ensurePresenterInstance(){
+    private boolean ensurePresenterInstance(){
         if(presenter==null){
             if (hasPresenter){
                 //能执行到这里就是见鬼了。表示View所对应的Presenter莫名其妙消失了。单独的View存在是很容易空指针的，所以直接重建最好。

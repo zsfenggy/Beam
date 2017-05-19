@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="network_error">网络错误</string>
+    <string name="data_empty">暂无数据</string>
+    <string name="network_error_and_retry">网络错误,点击重试</string>
+    <string name="more_loading">更多加载中……</string>
+    <string name="no_more">(*￣ω￣) 没有更多了</string>
+</resources>

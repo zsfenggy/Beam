@@ -23,7 +23,7 @@ public class Presenter<ViewType> {
         this.view = view;
     }
     /**
-     * activity$OnDestory的回调
+     * activity$OnDestroy的回调
      */
     protected void onDestroyView() {
     }

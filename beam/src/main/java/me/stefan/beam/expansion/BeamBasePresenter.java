@@ -31,22 +31,27 @@ public class BeamBasePresenter<T> extends Presenter<T> {
     }
 
     public void startActivity(Intent intent){
+        Activity activity = getActivity();
+        if(null==activity)return;
         getActivity().startActivity(intent);
     }
 
     public void startActivity(Class<? extends Activity> clazz){
         Activity activity = getActivity();
+        if(null==activity)return;
         activity.startActivity(new Intent(activity,clazz));
     }
 
     public void startActivityWithData(String id,Class<? extends Activity> clazz){
         Activity activity = getActivity();
+        if(null==activity)return;
         Intent i = new Intent(activity,clazz);
         i.putExtra(KEY_ID,id);
         activity.startActivity(i);
     }
     public void startActivityWithData(String id, Parcelable data,Class<? extends Activity> clazz){
         Activity activity = getActivity();
+        if(null==activity)return;
         Intent i = new Intent(activity,clazz);
         i.putExtra(KEY_ID,id);
         i.putExtra(KEY_DATA,data);
@@ -54,6 +59,7 @@ public class BeamBasePresenter<T> extends Presenter<T> {
     }
     public void startActivityWithData(Parcelable data,Class<? extends Activity> clazz){
         Activity activity = getActivity();
+        if(null==activity)return;
         Intent i = new Intent(activity,clazz);
         i.putExtra(KEY_DATA,data);
         activity.startActivity(i);

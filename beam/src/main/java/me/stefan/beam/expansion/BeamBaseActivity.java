@@ -3,6 +3,7 @@ package me.stefan.beam.expansion;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,7 +84,9 @@ public class  BeamBaseActivity<T extends Presenter> extends BeamAppCompatActivit
 
     public void onSetToolbar(Toolbar toolbar){
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar= getSupportActionBar();
+        if(null==actionBar) return;
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -106,23 +109,21 @@ public class  BeamBaseActivity<T extends Presenter> extends BeamAppCompatActivit
         return mDelegate;
     }
 
-    @Nullable
-    protected final <E extends View> E $(@NonNull View view,@IdRes int id){
-        return (E)view.findViewById(id);
-    }
-    @Nullable
-    protected final <E extends View> E viewId(@NonNull View view,@IdRes int id){
-        return (E)view.findViewById(id);
-    }
-    @Nullable
-    protected final <E extends View> E $(@IdRes int id){
-        return (E)findViewById(id);
-    }
-    @Nullable
-    protected final <E extends View> E viewId(@IdRes int id){
-        return (E)findViewById(id);
-    }
-
-
+//    @Nullable
+//    protected final <E extends View> E $(@NonNull View view,@IdRes int id){
+//        return (E)view.findViewById(id);
+//    }
+//    @Nullable
+//    protected final <E extends View> E viewId(@NonNull View view,@IdRes int id){
+//        return (E)view.findViewById(id);
+//    }
+//    @Nullable
+//    protected final <E extends View> E $(@IdRes int id){
+//        return (E)findViewById(id);
+//    }
+//    @Nullable
+//    protected final <E extends View> E viewId(@IdRes int id){
+//        return (E)findViewById(id);
+//    }
 
 }

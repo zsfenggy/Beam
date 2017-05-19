@@ -15,7 +15,8 @@ import android.view.WindowManager;
 public class Utils {
     /**
      * 取导航栏高度
-     * @return
+     *
+     * @return int
      */
     public static int getNavigationBarHeight(Context ctx) {
         int result = 0;
@@ -29,7 +30,8 @@ public class Utils {
 
     /**
      * 取状态栏高度
-     * @return
+     *
+     * @return int
      */
     public static int getStatusBarHeight(Context ctx) {
         int result = 0;
@@ -40,10 +42,10 @@ public class Utils {
         return result;
     }
 
-    public static boolean hasSoftKeys(Context ctx){
+    public static boolean hasSoftKeys(Context ctx) {
         boolean hasSoftwareKeys;
         WindowManager manager = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Display d = manager.getDefaultDisplay();
 
             DisplayMetrics realDisplayMetrics = new DisplayMetrics();
@@ -58,8 +60,8 @@ public class Utils {
             int displayHeight = displayMetrics.heightPixels;
             int displayWidth = displayMetrics.widthPixels;
 
-            hasSoftwareKeys =  (realWidth - displayWidth) > 0 || (realHeight - displayHeight) > 0;
-        }else{
+            hasSoftwareKeys = (realWidth - displayWidth) > 0 || (realHeight - displayHeight) > 0;
+        } else {
             boolean hasMenuKey = ViewConfiguration.get(ctx).hasPermanentMenuKey();
             boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
             hasSoftwareKeys = !hasMenuKey && !hasBackKey;
