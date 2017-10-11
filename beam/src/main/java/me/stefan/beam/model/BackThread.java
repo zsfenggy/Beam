@@ -23,17 +23,21 @@ class BackThread extends Thread {
         Looper.loop();
     }
 
-    void execute(Runnable runnable){
-        if (handler ==  null)queue.offer(runnable);
+    void execute(Runnable runnable) {
+        if (handler == null) queue.offer(runnable);
         else handler.post(runnable);
     }
 
-    void quit(){
+    void quit() {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Looper.myLooper().quit();
+                Looper looper = Looper.myLooper();
+                if (null != looper) {
+                    looper.quit();
+                }
             }
         });
     }
+
 }

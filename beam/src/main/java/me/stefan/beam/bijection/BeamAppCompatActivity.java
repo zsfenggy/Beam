@@ -16,33 +16,35 @@ import me.stefan.beam.Beam;
  * This class is an example of how an activity could controls it's presenter.
  * You can inherit from this class or copy/paste this class's code to
  * create your own view implementation.
- *
  */
 public abstract class BeamAppCompatActivity<PresenterType extends Presenter> extends AppCompatActivity {
     private ActivityLifeCycleDelegate activityLifeCycleDelegate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preCreatePresenter();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onCreate(savedInstanceState);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onCreate(savedInstanceState);
         helper.onCreate(savedInstanceState);
     }
 
-    public void preCreatePresenter(){
+    public void preCreatePresenter() {
         activityLifeCycleDelegate = Beam.createActivityLifeCycleDelegate(this);
     }
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onPostCreate(savedInstanceState);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onPostCreate(savedInstanceState);
         helper.onPostCreate();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onDestroy();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onDestroy();
         helper.onDestroyView();
         if (isFinishing())
             helper.onDestroy();
@@ -51,25 +53,29 @@ public abstract class BeamAppCompatActivity<PresenterType extends Presenter> ext
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onSaveInstanceState(outState);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onSaveInstanceState(outState);
         helper.onSave(outState);
     }
 
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-        if (activityLifeCycleDelegate!=null)return activityLifeCycleDelegate.dispatchPopulateAccessibilityEvent(event);
+        if (activityLifeCycleDelegate != null)
+            return activityLifeCycleDelegate.dispatchPopulateAccessibilityEvent(event);
         return super.dispatchPopulateAccessibilityEvent(event);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (activityLifeCycleDelegate!=null)return activityLifeCycleDelegate.dispatchTouchEvent(ev);
+        if (activityLifeCycleDelegate != null)
+            return activityLifeCycleDelegate.dispatchTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean dispatchTrackballEvent(MotionEvent ev) {
-        if (activityLifeCycleDelegate!=null)return activityLifeCycleDelegate.dispatchTrackballEvent(ev);
+        if (activityLifeCycleDelegate != null)
+            return activityLifeCycleDelegate.dispatchTrackballEvent(ev);
         return super.dispatchTrackballEvent(ev);
     }
 
@@ -91,22 +97,23 @@ public abstract class BeamAppCompatActivity<PresenterType extends Presenter> ext
     @Override
     protected void onResume() {
         super.onResume();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onResume();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onResume();
         helper.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onPause();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onPause();
         helper.onPause();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onActivityResult(requestCode, resultCode, data);
-        helper.onResult(requestCode, resultCode,data);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onActivityResult(requestCode, resultCode, data);
+        helper.onResult(requestCode, resultCode, data);
     }
 
 
@@ -120,89 +127,90 @@ public abstract class BeamAppCompatActivity<PresenterType extends Presenter> ext
     @Override
     public void onContentChanged() {
         super.onContentChanged();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onContentChanged();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onContentChanged();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onStart();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onStart();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onRestart();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onRestart();
     }
 
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onRestoreInstanceState(savedInstanceState);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onRestoreInstanceState(savedInstanceState);
     }
-
 
 
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onUserLeaveHint();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onUserLeaveHint();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onNewIntent(intent);
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onNewIntent(intent);
     }
 
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onLowMemory();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onLowMemory();
     }
 
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onTrimMemory(level);
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onTrimMemory(level);
     }
 
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onAttachFragment(fragment);
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onAttachFragment(fragment);
     }
 
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onResumeFragments();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onResumeFragments();
     }
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onBackPressed();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onBackPressed();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onStop();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onStop();
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onPostResume();
+        if (activityLifeCycleDelegate != null) activityLifeCycleDelegate.onPostResume();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (activityLifeCycleDelegate!=null)activityLifeCycleDelegate.onConfigurationChanged(newConfig);
+        if (activityLifeCycleDelegate != null)
+            activityLifeCycleDelegate.onConfigurationChanged(newConfig);
     }
 }

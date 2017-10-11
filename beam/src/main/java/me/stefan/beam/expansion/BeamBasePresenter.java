@@ -11,58 +11,62 @@ import me.stefan.beam.bijection.Presenter;
  * Created by Mr.Jude on 2016/3/20.
  */
 public class BeamBasePresenter<T> extends Presenter<T> {
-    public static final String KEY_ID = "Beam_id";
-    public static final String KEY_DATA = "Beam_data";
 
-    private Activity getActivity(){
+//    public static final String KEY_ID = "Beam_id";
+//    public static final String KEY_DATA = "Beam_data";
+
+    public Activity getActivity() {
         Activity activity = null;
-        if (getView() instanceof Activity)activity = (Activity) getView();
-        else if (getView() instanceof Fragment)activity = ((Fragment) getView()).getActivity();
-        else throw new RuntimeException("No View Found"+(getView()==null?"null":getView().getClass().getName()));
+        if (getView() instanceof Activity) activity = (Activity) getView();
+        else if (getView() instanceof Fragment) activity = ((Fragment) getView()).getActivity();
+        else
+            throw new RuntimeException("No View Found");
         return activity;
     }
 
-    public String getIdFromIntent(){
-        return getActivity().getIntent().getStringExtra(KEY_ID);
-    }
+//    public String getIdFromIntent() {
+//        return getActivity().getIntent().getStringExtra(KEY_ID);
+//    }
+//
+//    public <M> M getDataFromIntent() {
+//        return getActivity().getIntent().getParcelableExtra(KEY_DATA);
+//    }
 
-    public <M> M getDataFromIntent(){
-        return getActivity().getIntent().getParcelableExtra(KEY_DATA);
-    }
+//    public void startActivity(Intent intent) {
+//        Activity activity = getActivity();
+//        if (null == activity) return;
+//        getActivity().startActivity(intent);
+//    }
+//
+//    public void startActivity(Class<? extends Activity> clazz) {
+//        Activity activity = getActivity();
+//        if (null == activity) return;
+//        activity.startActivity(new Intent(activity, clazz));
+//    }
 
-    public void startActivity(Intent intent){
-        Activity activity = getActivity();
-        if(null==activity)return;
-        getActivity().startActivity(intent);
-    }
+//    public void startActivityWithData(String id, Class<? extends Activity> clazz) {
+//        Activity activity = getActivity();
+//        if (null == activity) return;
+//        Intent i = new Intent(activity, clazz);
+//        i.putExtra(KEY_ID, id);
+//        activity.startActivity(i);
+//    }
 
-    public void startActivity(Class<? extends Activity> clazz){
-        Activity activity = getActivity();
-        if(null==activity)return;
-        activity.startActivity(new Intent(activity,clazz));
-    }
-
-    public void startActivityWithData(String id,Class<? extends Activity> clazz){
-        Activity activity = getActivity();
-        if(null==activity)return;
-        Intent i = new Intent(activity,clazz);
-        i.putExtra(KEY_ID,id);
-        activity.startActivity(i);
-    }
-    public void startActivityWithData(String id, Parcelable data,Class<? extends Activity> clazz){
-        Activity activity = getActivity();
-        if(null==activity)return;
-        Intent i = new Intent(activity,clazz);
-        i.putExtra(KEY_ID,id);
-        i.putExtra(KEY_DATA,data);
-        activity.startActivity(i);
-    }
-    public void startActivityWithData(Parcelable data,Class<? extends Activity> clazz){
-        Activity activity = getActivity();
-        if(null==activity)return;
-        Intent i = new Intent(activity,clazz);
-        i.putExtra(KEY_DATA,data);
-        activity.startActivity(i);
-    }
+//    public void startActivityWithData(String id, Parcelable data, Class<? extends Activity> clazz) {
+//        Activity activity = getActivity();
+//        if (null == activity) return;
+//        Intent i = new Intent(activity, clazz);
+//        i.putExtra(KEY_ID, id);
+//        i.putExtra(KEY_DATA, data);
+//        activity.startActivity(i);
+//    }
+//
+//    public void startActivityWithData(Parcelable data, Class<? extends Activity> clazz) {
+//        Activity activity = getActivity();
+//        if (null == activity) return;
+//        Intent i = new Intent(activity, clazz);
+//        i.putExtra(KEY_DATA, data);
+//        activity.startActivity(i);
+//    }
 
 }

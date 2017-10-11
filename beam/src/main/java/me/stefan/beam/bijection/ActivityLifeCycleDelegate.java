@@ -10,7 +10,7 @@ import android.view.accessibility.AccessibilityEvent;
 /**
  * Created by Mr.Jude on 2015/8/22.
  */
-public class ActivityLifeCycleDelegate{
+public class ActivityLifeCycleDelegate {
     private BeamAppCompatActivity act;
 
     public ActivityLifeCycleDelegate(BeamAppCompatActivity act) {

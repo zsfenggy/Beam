@@ -12,7 +12,6 @@ import android.view.View;
  * This view is an example of how a view should control it's presenter.
  * You can inherit from this class or copy/paste this class's code to
  * create your own view implementation.
- *
  */
 public class BeamFragment<PresenterType extends Presenter> extends Fragment {
 

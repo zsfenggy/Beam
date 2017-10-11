@@ -10,6 +10,7 @@ public class Presenter<ViewType> {
      */
     protected void onCreate(@NonNull ViewType view, Bundle savedState) {
     }
+
     /**
      * presenter销毁时的回调。代表着activity正式退出
      */
@@ -22,30 +23,35 @@ public class Presenter<ViewType> {
     protected void onCreateView(@NonNull ViewType view) {
         this.view = view;
     }
+
     /**
      * activity$OnDestroy的回调
      */
     protected void onDestroyView() {
     }
+
     protected void onResume() {
     }
+
     protected void onPause() {
     }
 
     protected void onSave(Bundle state) {
     }
+
     protected void onResult(int requestCode, int resultCode, Intent data) {
     }
 
     String id;
     ViewType view;
+
     @NonNull
     public final ViewType getView() {
         return view;
     }
 
-    void create(ViewType view,Bundle savedState){
+    void create(ViewType view, Bundle savedState) {
         this.view = view;
-        onCreate(view,savedState);
+        onCreate(view, savedState);
     }
 }

@@ -12,7 +12,7 @@ public class DefaultPresenterManager extends PresenterManager {
     @Override
     public <T extends Presenter> T create(Object view) {
         T presenter = PresenterBuilder.fromViewClass(view.getClass());
-        if (presenter == null)return null;
+        if (presenter == null) return null;
 
         presenter.id = providePresenterId();
         idToPresenter.put(presenter.id, presenter);
@@ -21,7 +21,7 @@ public class DefaultPresenterManager extends PresenterManager {
 
     @Override
     public <T extends Presenter> T get(String id) {
-        return (T)idToPresenter.get(id);
+        return (T) idToPresenter.get(id);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DefaultPresenterManager extends PresenterManager {
 
     //最大程度保持线程安全。虽然主线程是非常安全的。
     private String providePresenterId() {
-        return  nextId++ + "/" + System.nanoTime() + "/" + (int)(Math.random() * Integer.MAX_VALUE);
+        return nextId++ + "/" + System.nanoTime() + "/" + (int) (Math.random() * Integer.MAX_VALUE);
     }
 
 }
