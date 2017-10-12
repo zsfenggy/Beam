@@ -1,18 +1,40 @@
 package me.stefan.beam.bijection;
 
 
-public abstract class PresenterManager {
+import java.util.HashMap;
 
-    private static PresenterManager instance = new DefaultPresenterManager();
+public class PresenterManager {
 
-    public static PresenterManager getInstance() {
-        return instance;
+    private static class SingletonHolder {
+        private static final PresenterManager INSTANCE = new PresenterManager();
     }
 
-    public abstract <T extends Presenter> T create(Object view);
+    public static PresenterManager getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
 
-    public abstract <T extends Presenter> T get(String id);
+    private HashMap<String, Presenter> idToPresenter = new HashMap<>();
+    private int nextId;
 
-    public abstract void destroy(String id);
+    public <T extends Presenter> T create(Object view) {
+        T presenter = PresenterBuilder.fromViewClass(view.getClass());
+        if (presenter == null) return null;
+
+        presenter.id = providePresenterId();
+        idToPresenter.put(presenter.id, presenter);
+        return presenter;
+    }
+
+    public <T extends Presenter> T get(String id) {
+        return (T) idToPresenter.get(id);
+    }
+
+    public void destroy(String id) {
+        idToPresenter.remove(id);
+    }
+
+    private String providePresenterId() {
+        return nextId++ + "/" + System.nanoTime() + "/" + (int) (Math.random() * Integer.MAX_VALUE);
+    }
 
 }

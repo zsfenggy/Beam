@@ -14,9 +14,11 @@ import me.stefan.beam.bijection.RequiresPresenter;
  * Created by Stefan on 2017/10/11.
  */
 @RequiresPresenter(TextPresenter.class)
-public class TextFragment extends BeamFragment<TextPresenter> {
+public class TextFragment extends BeamFragment<TextPresenter> implements View.OnClickListener {
 
     public static final String INDEX = "index";
+
+    private TextView textView;
 
     public static TextFragment newInstance(int index) {
         Bundle args = new Bundle();
@@ -36,11 +38,12 @@ public class TextFragment extends BeamFragment<TextPresenter> {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = view.findViewById(R.id.text);
+        textView = view.findViewById(R.id.text);
         if (null != textView) {
             Bundle bundle = getArguments();
             int index = bundle.getInt(INDEX);
             textView.setText(String.valueOf(index));
+            textView.setOnClickListener(this);
         }
     }
 
@@ -52,4 +55,12 @@ public class TextFragment extends BeamFragment<TextPresenter> {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.text:
+                getPresenter().goThird();
+                break;
+        }
+    }
 }

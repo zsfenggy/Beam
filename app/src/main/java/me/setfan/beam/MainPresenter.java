@@ -1,8 +1,5 @@
 package me.setfan.beam;
 
-import android.app.Activity;
-import android.content.Intent;
-
 import java.util.Random;
 
 import me.stefan.beam.expansion.BeamBasePresenter;
@@ -28,13 +25,7 @@ public class MainPresenter extends BeamBasePresenter<MainActivity> {
 
 
     public void goSecond() {
-        Activity activity = getActivity();
-        if (null == activity) {
-            return;
-        }
-        Intent intent = new Intent();
-        intent.setClass(activity, SecondActivity.class);
-        activity.startActivity(intent);
+        startNextActivity(SecondActivity.class);
     }
 
 }

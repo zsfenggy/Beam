@@ -6,26 +6,31 @@ import android.support.annotation.NonNull;
 
 public class Presenter<ViewType> {
     /**
-     * activity 第一次create直到到主动退出Activity之前都不会调用。
+     * activity only executes only once.
+     *
+     * @param view       ViewType
+     * @param savedState Bundle
      */
     protected void onCreate(@NonNull ViewType view, Bundle savedState) {
     }
 
     /**
-     * presenter销毁时的回调。代表着activity正式退出
+     * the call of presenter destroy.It represent activity finish.
      */
     protected void onDestroy() {
     }
 
     /**
-     * activity$OnCreate的回调,但执行延迟到OnCreate之后。
+     * the call of activity$OnCreate,but being executed after OnCreate.
+     *
+     * @param view ViewType
      */
     protected void onCreateView(@NonNull ViewType view) {
         this.view = view;
     }
 
     /**
-     * activity$OnDestroy的回调
+     * the call of activity$OnDestroy
      */
     protected void onDestroyView() {
     }

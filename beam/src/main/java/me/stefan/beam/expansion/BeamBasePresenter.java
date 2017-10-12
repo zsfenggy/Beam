@@ -1,8 +1,8 @@
 package me.stefan.beam.expansion;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 
 import me.stefan.beam.bijection.Presenter;
@@ -12,61 +12,66 @@ import me.stefan.beam.bijection.Presenter;
  */
 public class BeamBasePresenter<T> extends Presenter<T> {
 
-//    public static final String KEY_ID = "Beam_id";
-//    public static final String KEY_DATA = "Beam_data";
-
     public Activity getActivity() {
         Activity activity = null;
-        if (getView() instanceof Activity) activity = (Activity) getView();
-        else if (getView() instanceof Fragment) activity = ((Fragment) getView()).getActivity();
+        Object obj = getView();
+        if (obj instanceof Activity) activity = (Activity) obj;
+        else if (obj instanceof Fragment) activity = ((Fragment) obj).getActivity();
         else
             throw new RuntimeException("No View Found");
         return activity;
     }
 
-//    public String getIdFromIntent() {
-//        return getActivity().getIntent().getStringExtra(KEY_ID);
-//    }
-//
-//    public <M> M getDataFromIntent() {
-//        return getActivity().getIntent().getParcelableExtra(KEY_DATA);
-//    }
+    public void startNextActivity(Class<? extends Activity> clazz) {
+        Object obj = getView();
+        if (obj instanceof Activity) {
+            Activity activity = (Activity) obj;
+            activity.startActivity(new Intent(activity, clazz));
+        } else if (obj instanceof Fragment) {
+            Fragment fragment = (Fragment) obj;
+            Context context = fragment.getContext();
+            fragment.startActivity(new Intent(context, clazz));
+        }
+    }
 
-//    public void startActivity(Intent intent) {
-//        Activity activity = getActivity();
-//        if (null == activity) return;
-//        getActivity().startActivity(intent);
-//    }
-//
-//    public void startActivity(Class<? extends Activity> clazz) {
-//        Activity activity = getActivity();
-//        if (null == activity) return;
-//        activity.startActivity(new Intent(activity, clazz));
-//    }
+    public void startNextActivity(Class<? extends Activity> clazz, Intent intent) {
+        Object obj = getView();
+        if (obj instanceof Activity) {
+            Activity activity = (Activity) obj;
+            intent.setClass(activity, clazz);
+            activity.startActivity(intent);
+        } else if (obj instanceof Fragment) {
+            Fragment fragment = (Fragment) obj;
+            Context context = fragment.getContext();
+            intent.setClass(context, clazz);
+            fragment.startActivity(intent);
+        }
+    }
 
-//    public void startActivityWithData(String id, Class<? extends Activity> clazz) {
-//        Activity activity = getActivity();
-//        if (null == activity) return;
-//        Intent i = new Intent(activity, clazz);
-//        i.putExtra(KEY_ID, id);
-//        activity.startActivity(i);
-//    }
+    public void startNextActivityForResult(Class<?> clazz, int requestCode) {
+        Object obj = getView();
+        if (obj instanceof Activity) {
+            Activity activity = (Activity) obj;
+            activity.startActivityForResult(new Intent(activity, clazz), requestCode);
+        } else if (obj instanceof Fragment) {
+            Fragment fragment = (Fragment) obj;
+            Context context = fragment.getContext();
+            fragment.startActivityForResult(new Intent(context, clazz), requestCode);
+        }
+    }
 
-//    public void startActivityWithData(String id, Parcelable data, Class<? extends Activity> clazz) {
-//        Activity activity = getActivity();
-//        if (null == activity) return;
-//        Intent i = new Intent(activity, clazz);
-//        i.putExtra(KEY_ID, id);
-//        i.putExtra(KEY_DATA, data);
-//        activity.startActivity(i);
-//    }
-//
-//    public void startActivityWithData(Parcelable data, Class<? extends Activity> clazz) {
-//        Activity activity = getActivity();
-//        if (null == activity) return;
-//        Intent i = new Intent(activity, clazz);
-//        i.putExtra(KEY_DATA, data);
-//        activity.startActivity(i);
-//    }
+    public void startNextActivityForResult(Class<?> clazz, Intent intent, int requestCode) {
+        Object obj = getView();
+        if (obj instanceof Activity) {
+            Activity activity = (Activity) obj;
+            intent.setClass(activity, clazz);
+            activity.startActivityForResult(intent, requestCode);
+        } else if (obj instanceof Fragment) {
+            Fragment fragment = (Fragment) obj;
+            Context context = fragment.getContext();
+            intent.setClass(context, clazz);
+            fragment.startActivityForResult(intent, requestCode);
+        }
+    }
 
 }
