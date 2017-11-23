@@ -28,7 +28,7 @@ publish {
     repoName = 'maven'
     groupId = 'me.stefan'
     artifactId = 'beam'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
 }
 
 dependencies {
