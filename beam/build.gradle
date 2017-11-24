@@ -29,6 +29,8 @@ publish {
     groupId = 'me.stefan'
     artifactId = 'beam'
     publishVersion = '0.0.2'
+    desc = 'A MVP Frame for Android'
+    website = 'https://github.com/zsfenggy/Beam'
 }
 
 dependencies {
